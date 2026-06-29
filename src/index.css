@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #faf7f2;
+  color: #2c2c2c;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+  background: #faf7f2;
+  min-height: 100vh;
+}
+
+/* Tablet and larger */
+@media (min-width: 768px) {
+  #root {
+    padding: 0 2rem 3rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gold-accent {
+  color: #b8860b;
+}
+
+.btn {
+  display: inline-block;
+  background: #1e1e1e;
+  color: #faf7f2;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+.btn:hover {
+  background: #b8860b;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(184, 134, 11, 0.25);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #1e1e1e;
+  color: #1e1e1e;
+}
+
+.btn-outline:hover {
+  background: #1e1e1e;
+  color: #faf7f2;
+  border-color: #1e1e1e;
+}
+
+.btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 40px;
+  background: #1e1e1e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+.btn-sm:hover {
+  background: #b8860b;
+  transform: scale(1.02);
+}
+
+.btn-sm-outline {
+  background: transparent;
+  border: 1px solid #1e1e1e;
+  color: #1e1e1e;
+}
+
+.btn-sm-outline:hover {
+  background: #1e1e1e;
+  color: white;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 480px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 481px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Product card hover effect */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(184, 134, 11, 0.08);
+  border-color: #e8d5b5;
+}
+
+/* Animations for cart */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Add padding to body to prevent content from hiding behind fixed navbar */
+body {
+  padding-top: 20px;
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  body {
+    padding-top: 10px;
+  }
+}
+
+/* Floating navbar glow effect */
+.floating-navbar {
+  animation: floatIn 0.6s ease-out;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Optional: Add a subtle gradient background to the navbar on scroll */
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+/* Add padding to body to prevent content from hiding behind fixed navbar */
+body {
+  padding-top: 20px;
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  body {
+    padding-top: 10px;
+  }
+}
+
+/* Floating navbar glow effect */
+.floating-navbar {
+  animation: floatIn 0.6s ease-out;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Optional: Add a subtle gradient background to the navbar on scroll */
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
