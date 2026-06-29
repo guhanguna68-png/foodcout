@@ -1,38 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Trending food items with reliable, high-quality images
+  // Trending food items
   const slides = [
-   
     {
       id: 1,
-      title: 'Paneer Tikka',
-      subtitle: 'Grilled Perfection',
-      description: 'Cottage cheese marinated in yogurt and 15 aromatic spices, grilled to perfection in a traditional clay tandoor.',
-      image: 'https://images.unsplash.com/photo-1567186937675-a5138e8df89d?w=1200&h=600&fit=crop&crop=center',
-      badge: '🌿 Popular Choice',
-      tag: 'Vegetarian Favorite'
+      title: 'Butter Chicken',
+      subtitle: 'Rich & Creamy Royalty',
+      description: 'Experience the royal taste of our signature butter chicken, slow-cooked with aromatic spices and finished with a dollop of butter.',
+      image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&h=500&fit=crop&crop=center',
+      badge: '🔥 Bestseller',
+      tag: 'Most Ordered',
+      bgColor: '#fdf6ee'
     },
     {
       id: 2,
-      title: 'Gulab Jamun',
-      subtitle: 'Sweet Indulgence',
-      description: 'Soft, spongy milk dumplings soaked in fragrant rose syrup with a hint of cardamom and saffron.',
-      image: 'https://images.unsplash.com/photo-1589119908998-4fc6f6b7e080?w=1200&h=600&fit=crop&crop=center',
-      badge: '🍨 Sweet Treat',
-      tag: 'Dessert Special'
+      title: 'Hyderabadi Biryani',
+      subtitle: 'The Royal Feast',
+      description: 'Fragrant basmati rice layered with saffron-infused tender meat, caramelized onions, and a blend of exotic spices.',
+      image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&h=500&fit=crop&crop=center',
+      badge: '⭐ Chef Special',
+      tag: 'Signature Dish',
+      bgColor: '#f5f0ea'
     },
     {
       id: 3,
+      title: 'Paneer Tikka',
+      subtitle: 'Grilled Perfection',
+      description: 'Cottage cheese marinated in yogurt and 15 aromatic spices, grilled to perfection in a traditional clay tandoor.',
+      image: 'https://images.unsplash.com/photo-1567186937675-a5138e8df89d?w=600&h=500&fit=crop&crop=center',
+      badge: '🌿 Popular Choice',
+      tag: 'Vegetarian Favorite',
+      bgColor: '#f0f5ea'
+    },
+    {
+      id: 4,
+      title: 'Gulab Jamun',
+      subtitle: 'Sweet Indulgence',
+      description: 'Soft, spongy milk dumplings soaked in fragrant rose syrup with a hint of cardamom and saffron.',
+      image: 'https://images.unsplash.com/photo-1589119908998-4fc6f6b7e080?w=600&h=500&fit=crop&crop=center',
+      badge: '🍨 Sweet Treat',
+      tag: 'Dessert Special',
+      bgColor: '#fdf0f0'
+    },
+    {
+      id: 5,
       title: 'Masala Chai',
       subtitle: 'Perfect Brew',
       description: 'Traditional spiced tea brewed with fresh ginger, cardamom, cinnamon, and a touch of love.',
-      image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1200&h=600&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=500&fit=crop&crop=center',
       badge: '☕ House Special',
-      tag: 'Beverage'
+      tag: 'Beverage',
+      bgColor: '#f5efe8'
     }
   ];
 
@@ -73,228 +95,208 @@ const Hero = () => {
     }
   };
 
+  const current = slides[currentSlide];
+
   return (
     <section style={{
-      position: 'relative',
       borderRadius: 'clamp(24px, 4vw, 48px)',
       margin: 'clamp(1rem, 3vw, 2rem) 0',
       overflow: 'hidden',
-      height: 'clamp(450px, 65vh, 650px)',
-      boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-      backgroundColor: '#1a1a1a', // Fallback background
+      height: 'clamp(450px, 70vh, 650px)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+      backgroundColor: current.bgColor || '#faf7f2',
+      position: 'relative',
+      transition: 'background-color 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
     }}>
-      {/* Slides Container */}
       <div style={{
-        display: 'flex',
-        transition: 'transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        transform: `translateX(-${currentSlide * 100}%)`,
+        display: 'grid',
+        gridTemplateColumns: '1.1fr 0.9fr',
         height: '100%',
-        width: `${slides.length * 100}%`,
-        willChange: 'transform',
+        width: '100%',
+        transition: 'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}>
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
+        {/* Left Side - Content */}
+        <div style={{
+          padding: 'clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '100%',
+          position: 'relative',
+          zIndex: 2,
+          overflow: 'hidden',
+        }}>
+          {/* Tag & Badge Row */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            marginBottom: '0.8rem',
+            flexWrap: 'wrap',
+          }}>
+            <span style={{
+              background: 'rgba(184, 134, 11, 0.1)',
+              padding: '0.2rem 1rem',
+              borderRadius: '30px',
+              fontSize: 'clamp(0.55rem, 0.9vw, 0.7rem)',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '1.2px',
+              color: '#b8860b',
+              border: '1px solid rgba(184, 134, 11, 0.15)',
+              whiteSpace: 'nowrap',
+            }}>
+              {current.tag}
+            </span>
+            <span style={{
+              background: 'linear-gradient(135deg, #b8860b, #8b6914)',
+              padding: '0.2rem 1rem',
+              borderRadius: '30px',
+              fontSize: 'clamp(0.55rem, 0.9vw, 0.7rem)',
+              fontWeight: 600,
+              color: '#fff',
+              boxShadow: '0 2px 8px rgba(184, 134, 11, 0.3)',
+              whiteSpace: 'nowrap',
+            }}>
+              {current.badge}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h1 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+            fontWeight: 700,
+            lineHeight: 1.1,
+            color: '#1e1e1e',
+            marginBottom: '0.2rem',
+          }}>
+            {current.title}
+          </h1>
+
+          {/* Subtitle */}
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(1rem, 2vw, 1.6rem)',
+            fontWeight: 400,
+            color: '#b8860b',
+            marginBottom: '0.8rem',
+          }}>
+            {current.subtitle}
+          </h2>
+
+          {/* Description */}
+          <p style={{
+            fontSize: 'clamp(0.8rem, 1.1vw, 1rem)',
+            lineHeight: 1.6,
+            color: '#4a4a4a',
+            marginBottom: '1.5rem',
+            maxWidth: '95%',
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}>
+            {current.description}
+          </p>
+
+          {/* Explore Button */}
+          <button 
+            className="btn" 
+            onClick={() => document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' })}
             style={{
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              flexShrink: 0,
-              background: `linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%)`,
+              padding: 'clamp(0.6rem, 1.2vw, 0.9rem) clamp(1.5rem, 2.5vw, 2.5rem)',
+              fontSize: 'clamp(0.8rem, 1.1vw, 0.95rem)',
+              background: 'linear-gradient(135deg, #b8860b, #8b6914)',
+              border: 'none',
+              borderRadius: '50px',
+              boxShadow: '0 4px 20px rgba(184, 134, 11, 0.3)',
+              transition: 'all 0.3s ease',
+              fontWeight: 600,
+              letterSpacing: '0.5px',
+              alignSelf: 'flex-start',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+              e.currentTarget.style.boxShadow = '0 8px 30px rgba(184, 134, 11, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(184, 134, 11, 0.3)';
             }}
           >
-            {/* Image - Using object-fit for perfect display */}
+            <i className="fas fa-utensils" style={{ marginRight: '8px' }}></i>
+            Explore Our Menu
+          </button>
+        </div>
+
+        {/* Right Side - Image */}
+        <div style={{
+          height: '100%',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 'clamp(1rem, 2vw, 2rem)',
+        }}>
+          <div style={{
+            width: '100%',
+            height: '100%',
+            borderRadius: 'clamp(20px, 2.5vw, 35px)',
+            overflow: 'hidden',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.12)',
+            position: 'relative',
+          }}>
             <img 
-              src={slide.image}
-              alt={slide.title}
+              src={current.image}
+              alt={current.title}
               style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
                 objectPosition: 'center',
-                zIndex: 0,
+                transition: 'transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               }}
               loading="lazy"
             />
-            
-            {/* Dark Overlay - softer for better image visibility */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%)',
-              zIndex: 1,
-            }} />
-
-            {/* Content */}
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '8%',
-              transform: 'translateY(-50%)',
-              color: '#fff',
-              maxWidth: '580px',
-              padding: '0 2rem',
-              zIndex: 2,
-            }}>
-              {/* Tag */}
-              <div style={{
-                display: 'inline-block',
-                background: 'rgba(184, 134, 11, 0.2)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(184, 134, 11, 0.3)',
-                padding: '0.25rem 1.2rem',
-                borderRadius: '30px',
-                fontSize: '0.75rem',
-                fontWeight: 500,
-                marginBottom: '0.8rem',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                color: '#b8860b',
-              }}>
-                {slide.tag}
-              </div>
-
-              {/* Badge */}
-              <div style={{
-                display: 'inline-block',
-                background: 'linear-gradient(135deg, #b8860b, #8b6914)',
-                padding: '0.3rem 1.2rem',
-                borderRadius: '30px',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                marginBottom: '1rem',
-                marginLeft: '0.5rem',
-                boxShadow: '0 4px 12px rgba(184, 134, 11, 0.3)',
-              }}>
-                {slide.badge}
-              </div>
-
-              {/* Title */}
-              <h1 style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: 'clamp(2.8rem, 6vw, 4.8rem)',
-                fontWeight: 700,
-                marginBottom: '0.3rem',
-                lineHeight: 1.1,
-                textShadow: '0 2px 20px rgba(0,0,0,0.3)',
-              }}>
-                {slide.title}
-              </h1>
-
-              {/* Subtitle */}
-              <h2 style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: 'clamp(1.3rem, 2.5vw, 2rem)',
-                fontWeight: 400,
-                color: '#b8860b',
-                marginBottom: '0.8rem',
-                textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-              }}>
-                {slide.subtitle}
-              </h2>
-
-              {/* Description */}
-              <p style={{
-                fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)',
-                lineHeight: 1.8,
-                opacity: 0.92,
-                marginBottom: '1.8rem',
-                textShadow: '0 1px 8px rgba(0,0,0,0.3)',
-                maxWidth: '480px',
-              }}>
-                {slide.description}
-              </p>
-
-              {/* Explore Button */}
-              <button 
-                className="btn" 
-                onClick={() => document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' })}
-                style={{
-                  padding: '1rem 3rem',
-                  fontSize: '1.05rem',
-                  background: 'linear-gradient(135deg, #b8860b, #8b6914)',
-                  border: 'none',
-                  borderRadius: '50px',
-                  boxShadow: '0 4px 20px rgba(184, 134, 11, 0.4)',
-                  transition: 'all 0.3s ease',
-                  fontWeight: 600,
-                  letterSpacing: '0.5px',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(184, 134, 11, 0.6)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(184, 134, 11, 0.4)';
-                }}
-              >
-                <i className="fas fa-utensils" style={{ marginRight: '10px' }}></i>
-                Explore Our Menu
-              </button>
-            </div>
-
-            {/* Slide Number Indicator */}
-            <div style={{
-              position: 'absolute',
-              bottom: '2.5rem',
-              right: '2.5rem',
-              color: 'rgba(255,255,255,0.5)',
-              fontSize: '1rem',
-              fontWeight: 300,
-              zIndex: 2,
-              background: 'rgba(0,0,0,0.2)',
-              backdropFilter: 'blur(10px)',
-              padding: '0.4rem 1rem',
-              borderRadius: '20px',
-              border: '1px solid rgba(255,255,255,0.1)',
-            }}>
-              {String(index + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-            </div>
           </div>
-        ))}
+        </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Desktop */}
       <button
         onClick={prevSlide}
         style={{
           position: 'absolute',
-          left: '20px',
+          left: '12px',
           top: '50%',
           transform: 'translateY(-50%)',
-          background: 'rgba(255,255,255,0.15)',
-          backdropFilter: 'blur(15px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          color: '#fff',
-          width: '50px',
-          height: '50px',
+          background: 'rgba(255,255,255,0.9)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(0,0,0,0.05)',
+          color: '#2c2c2c',
+          width: '40px',
+          height: '40px',
           borderRadius: '50%',
           cursor: 'pointer',
-          fontSize: '1.2rem',
-          transition: 'all 0.4s ease',
+          fontSize: '0.9rem',
+          transition: 'all 0.3s ease',
           zIndex: 10,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          opacity: 0.7,
+          boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
         }}
         className="hide-mobile"
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = 'rgba(184, 134, 11, 0.8)';
+          e.currentTarget.style.background = '#b8860b';
+          e.currentTarget.style.color = '#fff';
           e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          e.currentTarget.style.opacity = '1';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+          e.currentTarget.style.background = 'rgba(255,255,255,0.9)';
+          e.currentTarget.style.color = '#2c2c2c';
           e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          e.currentTarget.style.opacity = '0.7';
         }}
       >
         <i className="fas fa-chevron-left"></i>
@@ -304,109 +306,182 @@ const Hero = () => {
         onClick={nextSlide}
         style={{
           position: 'absolute',
-          right: '20px',
+          right: '12px',
           top: '50%',
           transform: 'translateY(-50%)',
-          background: 'rgba(255,255,255,0.15)',
-          backdropFilter: 'blur(15px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          color: '#fff',
-          width: '50px',
-          height: '50px',
+          background: 'rgba(255,255,255,0.9)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(0,0,0,0.05)',
+          color: '#2c2c2c',
+          width: '40px',
+          height: '40px',
           borderRadius: '50%',
           cursor: 'pointer',
-          fontSize: '1.2rem',
-          transition: 'all 0.4s ease',
+          fontSize: '0.9rem',
+          transition: 'all 0.3s ease',
           zIndex: 10,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          opacity: 0.7,
+          boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
         }}
         className="hide-mobile"
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = 'rgba(184, 134, 11, 0.8)';
+          e.currentTarget.style.background = '#b8860b';
+          e.currentTarget.style.color = '#fff';
           e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          e.currentTarget.style.opacity = '1';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+          e.currentTarget.style.background = 'rgba(255,255,255,0.9)';
+          e.currentTarget.style.color = '#2c2c2c';
           e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          e.currentTarget.style.opacity = '0.7';
         }}
       >
         <i className="fas fa-chevron-right"></i>
       </button>
 
-      {/* Dots Indicator */}
+      {/* Slide Indicator - Bottom Center */}
       <div style={{
         position: 'absolute',
-        bottom: '25px',
+        bottom: 'clamp(15px, 2vh, 25px)',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: '14px',
+        alignItems: 'center',
+        gap: 'clamp(6px, 0.8vw, 12px)',
         zIndex: 10,
+        padding: 'clamp(5px, 0.6vw, 10px) clamp(10px, 1.2vw, 20px)',
+        background: 'rgba(255,255,255,0.92)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderRadius: '50px',
+        border: '1px solid rgba(255,255,255,0.3)',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
       }}>
+        <button
+          onClick={prevSlide}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: '#666',
+            cursor: 'pointer',
+            fontSize: 'clamp(10px, 0.9vw, 14px)',
+            padding: 'clamp(2px, 0.2vw, 6px)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#b8860b';
+            e.currentTarget.style.transform = 'scale(1.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '#666';
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          <i className="fas fa-chevron-left"></i>
+        </button>
+
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             style={{
-              width: currentSlide === index ? '45px' : '12px',
-              height: '12px',
-              borderRadius: '20px',
+              width: currentSlide === index ? 'clamp(18px, 2vw, 28px)' : 'clamp(6px, 0.6vw, 10px)',
+              height: 'clamp(6px, 0.6vw, 10px)',
+              borderRadius: '50px',
               border: 'none',
               background: currentSlide === index 
                 ? 'linear-gradient(135deg, #b8860b, #8b6914)'
-                : 'rgba(255,255,255,0.4)',
+                : '#d0c8c0',
               cursor: 'pointer',
-              transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               boxShadow: currentSlide === index 
-                ? '0 0 25px rgba(184, 134, 11, 0.5)'
+                ? '0 0 20px rgba(184, 134, 11, 0.3)'
                 : 'none',
+              padding: 0,
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               if (currentSlide !== index) {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.8)';
-                e.currentTarget.style.transform = 'scale(1.2)';
+                e.currentTarget.style.background = '#b8860b';
+                e.currentTarget.style.transform = 'scale(1.3)';
               }
             }}
             onMouseLeave={(e) => {
               if (currentSlide !== index) {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.4)';
+                e.currentTarget.style.background = '#d0c8c0';
                 e.currentTarget.style.transform = 'scale(1)';
               }
             }}
           />
         ))}
+
+        <button
+          onClick={nextSlide}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: '#666',
+            cursor: 'pointer',
+            fontSize: 'clamp(10px, 0.9vw, 14px)',
+            padding: 'clamp(2px, 0.2vw, 6px)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#b8860b';
+            e.currentTarget.style.transform = 'scale(1.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '#666';
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          <i className="fas fa-chevron-right"></i>
+        </button>
+
+        <span style={{
+          color: '#999',
+          fontSize: 'clamp(8px, 0.6vw, 11px)',
+          fontWeight: 300,
+          marginLeft: 'clamp(2px, 0.2vw, 6px)',
+          fontFamily: "'Inter', sans-serif",
+        }}>
+          {String(currentSlide + 1).padStart(2, '0')}/{String(slides.length).padStart(2, '0')}
+        </span>
       </div>
 
       {/* Auto-slide indicator */}
       <div style={{
         position: 'absolute',
-        bottom: '25px',
-        right: '25px',
+        bottom: 'clamp(15px, 2vh, 25px)',
+        right: 'clamp(10px, 1.5vw, 25px)',
         zIndex: 10,
         display: 'flex',
         alignItems: 'center',
-        gap: '8px',
-        background: 'rgba(0,0,0,0.25)',
+        gap: '6px',
+        background: 'rgba(255,255,255,0.85)',
         backdropFilter: 'blur(12px)',
-        padding: '0.4rem 1rem',
+        padding: '0.3rem 0.8rem',
         borderRadius: '20px',
-        color: 'rgba(255,255,255,0.6)',
-        fontSize: '0.7rem',
-        fontWeight: 400,
-        border: '1px solid rgba(255,255,255,0.1)',
+        color: '#999',
+        fontSize: 'clamp(0.5rem, 0.6vw, 0.7rem)',
+        fontWeight: 300,
+        border: '1px solid rgba(0,0,0,0.05)',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
       }} className="hide-mobile">
         <span style={{
           display: 'inline-block',
-          width: '6px',
-          height: '6px',
+          width: '5px',
+          height: '5px',
           borderRadius: '50%',
           background: '#b8860b',
-          animation: 'pulse 1s ease-in-out infinite',
+          animation: 'pulse 2s ease-in-out infinite',
         }}></span>
         Auto-slide
       </div>
@@ -422,26 +497,28 @@ const Hero = () => {
             transform: scale(0.6); 
           }
         }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
+
+        @media (max-width: 768px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: 1fr 1fr;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          
+          .hero-content {
+            padding: 1.2rem !important;
           }
-        }
-        
-        .hero-content {
-          animation: fadeInUp 0.7s ease-out;
-        }
-        
-        /* Ensure images load properly */
-        img {
-          display: block;
-          max-width: 100%;
+          
+          .hero-image {
+            padding: 0.5rem 1rem 1rem !important;
+          }
+          
+          .hero-image img {
+            border-radius: 16px !important;
+          }
+          
+          .hide-mobile {
+            display: none !important;
+          }
         }
       `}</style>
     </section>
