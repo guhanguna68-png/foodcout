@@ -31,7 +31,7 @@ const Hero = () => {
       title: 'Paneer Tikka',
       subtitle: 'Grilled Perfection',
       description: 'Cottage cheese marinated in yogurt and 15 aromatic spices, grilled to perfection in a traditional clay tandoor.',
-      image: 'https://images.unsplash.com/photo-1567186937675-a5138e8df89d?w=600&h=500&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&h=400&fit=crop&crop=center',
       badge: '🌿 Popular Choice',
       tag: 'Vegetarian Favorite',
       bgColor: '#f0f5ea'
@@ -41,7 +41,7 @@ const Hero = () => {
       title: 'Gulab Jamun',
       subtitle: 'Sweet Indulgence',
       description: 'Soft, spongy milk dumplings soaked in fragrant rose syrup with a hint of cardamom and saffron.',
-      image: 'https://images.unsplash.com/photo-1589119908998-4fc6f6b7e080?w=600&h=500&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop&crop=center',
       badge: '🍨 Sweet Treat',
       tag: 'Dessert Special',
       bgColor: '#fdf0f0'
