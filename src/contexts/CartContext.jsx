@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
       try { 
         setCart(JSON.parse(saved)); 
       } catch {
-        // Silent fail if localStorage data is corrupted
+        // Silent fail
       }
     }
   }, []);
@@ -55,6 +55,12 @@ export const CartProvider = ({ children }) => {
   const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
+  // Get cart item count for a specific product
+  const getItemCount = (productId) => {
+    const item = cart.find(item => item.id === productId);
+    return item ? item.quantity : 0;
+  };
+
   return (
     <CartContext.Provider value={{
       cart,
@@ -64,11 +70,11 @@ export const CartProvider = ({ children }) => {
       clearCart,
       totalItems,
       totalPrice,
+      getItemCount,
     }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => useContext(CartContext);
