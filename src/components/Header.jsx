@@ -65,7 +65,7 @@ const Header = ({ toggleCart }) => {
         zIndex: 9998,
         transition: 'all 0.3s ease',
       }}>
-        {/* Logo - Integrated */}
+        {/* Animated Logo */}
         <Link to="/" style={{
           display: 'flex',
           alignItems: 'center',
@@ -73,7 +73,7 @@ const Header = ({ toggleCart }) => {
           textDecoration: 'none',
           flexShrink: 0,
         }}>
-          {/* Logo Icon */}
+          {/* Logo Icon with Animation */}
           <div style={{
             width: 'clamp(35px, 3.5vw, 45px)',
             height: 'clamp(35px, 3.5vw, 45px)',
@@ -85,34 +85,54 @@ const Header = ({ toggleCart }) => {
             boxShadow: '0 4px 15px rgba(184, 134, 11, 0.35)',
             position: 'relative',
             overflow: 'hidden',
+            animation: 'logoGlow 3s ease-in-out infinite, logoFloat 4s ease-in-out infinite',
           }}>
+            {/* Rotating Ring */}
             <div style={{
               position: 'absolute',
-              top: '-30%',
-              right: '-30%',
-              width: '70%',
-              height: '70%',
-              background: 'rgba(255,255,255,0.08)',
-              borderRadius: '50%',
+              top: '-50%',
+              left: '-50%',
+              width: '200%',
+              height: '200%',
+              background: 'conic-gradient(from 0deg, transparent, rgba(255,215,0,0.3), transparent, rgba(255,215,0,0.3), transparent)',
+              animation: 'spinRing 6s linear infinite',
             }} />
+            
+            {/* Inner Glow */}
+            <div style={{
+              position: 'absolute',
+              top: '10%',
+              left: '10%',
+              width: '80%',
+              height: '80%',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(255,215,0,0.2), transparent)',
+              animation: 'pulseGlow 2s ease-in-out infinite',
+            }} />
+
+            {/* Crown Icon */}
             <i className="fas fa-crown" style={{ 
               color: '#fff',
               fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
               zIndex: 1,
               textShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              animation: 'crownPulse 2s ease-in-out infinite',
             }} />
+            
+            {/* Small Accent */}
             <div style={{
               position: 'absolute',
               bottom: '3px',
               right: '4px',
               fontSize: 'clamp(0.35rem, 0.6vw, 0.5rem)',
               color: 'rgba(255,255,255,0.3)',
+              animation: 'fadeInOut 3s ease-in-out infinite',
             }}>
               <i className="fas fa-utensils"></i>
             </div>
           </div>
 
-          {/* Brand Name */}
+          {/* Brand Name with Animation */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -127,6 +147,8 @@ const Header = ({ toggleCart }) => {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               letterSpacing: '-0.5px',
+              animation: 'textShimmer 3s ease-in-out infinite',
+              backgroundSize: '200% 200%',
             }}>
               Neha Sri
             </span>
@@ -138,6 +160,7 @@ const Header = ({ toggleCart }) => {
               textTransform: 'uppercase',
               opacity: 0.7,
               marginTop: '-1px',
+              animation: 'fadeInOut 3s ease-in-out infinite',
             }}>
               Food Cort
             </span>
@@ -186,6 +209,7 @@ const Header = ({ toggleCart }) => {
                   height: '2px',
                   background: 'linear-gradient(90deg, #b8860b, #8b6914)',
                   borderRadius: '2px',
+                  animation: 'underlinePulse 2s ease-in-out infinite',
                 }} />
               )}
             </Link>
@@ -232,6 +256,7 @@ const Header = ({ toggleCart }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 2px 8px rgba(184, 134, 11, 0.4)',
+                animation: 'badgePop 0.5s ease',
               }}>{totalItems}</span>
             )}
           </div>
@@ -305,6 +330,7 @@ const Header = ({ toggleCart }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                animation: 'logoGlow 3s ease-in-out infinite',
               }}>
                 <i className="fas fa-crown" style={{ color: '#fff', fontSize: '0.8rem' }}></i>
               </div>
@@ -334,9 +360,16 @@ const Header = ({ toggleCart }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                transition: 'transform 0.3s ease',
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = '#e8e0d6'}
-              onMouseLeave={(e) => e.currentTarget.style.background = '#f5f0e8'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#e8e0d6';
+                e.currentTarget.style.transform = 'rotate(90deg)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#f5f0e8';
+                e.currentTarget.style.transform = 'rotate(0deg)';
+              }}
             >
               <i className="fas fa-times"></i>
             </button>
@@ -466,7 +499,105 @@ const Header = ({ toggleCart }) => {
             transform: translateX(-50%) translateY(0) scale(1);
           }
         }
-        
+
+        /* Logo Animation - Spinning Ring */
+        @keyframes spinRing {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* Logo Animation - Glow Effect */
+        @keyframes logoGlow {
+          0%, 100% {
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.35);
+          }
+          50% {
+            box-shadow: 0 4px 30px rgba(184, 134, 11, 0.6), 0 0 60px rgba(184, 134, 11, 0.2);
+          }
+        }
+
+        /* Logo Animation - Floating */
+        @keyframes logoFloat {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-3px);
+          }
+        }
+
+        /* Logo Animation - Pulse Glow */
+        @keyframes pulseGlow {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.5;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 1;
+          }
+        }
+
+        /* Logo Animation - Crown Pulse */
+        @keyframes crownPulse {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+
+        /* Logo Animation - Fade In Out */
+        @keyframes fadeInOut {
+          0%, 100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.8;
+          }
+        }
+
+        /* Logo Animation - Text Shimmer */
+        @keyframes textShimmer {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        /* Underline Animation */
+        @keyframes underlinePulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.3;
+          }
+        }
+
+        /* Badge Pop Animation */
+        @keyframes badgePop {
+          0% {
+            transform: scale(0);
+          }
+          60% {
+            transform: scale(1.3);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
         html {
           scroll-behavior: smooth;
         }
